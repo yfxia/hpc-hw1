@@ -2,7 +2,7 @@
 CXX=mpic++
 
 # activate for compiler optimizations:
-CCFLAGS=-Wall -O3 -std=c++11
+CCFLAGS=-Wall -O3 -std=c++0x
 LDFLAGS=
 
 all: poly-eval
