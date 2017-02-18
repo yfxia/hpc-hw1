@@ -25,7 +25,7 @@
  * @param rank      Rank of the processor requesting time
  * @param comm      MPI communication object
  */
-void set_time(struct timespec &t, const int rank, MPI_Comm comm);
+void set_time(double &t, const int rank, MPI_Comm comm);
 
 /**
  * Find the time durations and return the the result in seconds
@@ -33,7 +33,7 @@ void set_time(struct timespec &t, const int rank, MPI_Comm comm);
  * @param t_end     Duration end time
  * @return          Duration in seconds
  */
-double get_duration(struct timespec &t_start, struct timespec &t_end);
+double get_duration(double &t_start, double &t_end);
 //---------------------------------------------------------------------//
 
 /*********************************************************************

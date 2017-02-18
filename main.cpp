@@ -52,7 +52,7 @@ int main(int argc, char** argv) {
     }
     
     double poly_evaltime;
-    struct timespec t_start, t_end;
+    double t_start, t_end;
     
     if (p>1){
         //------------------- run the parallel version ---------------------//

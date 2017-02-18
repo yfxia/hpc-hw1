@@ -6,20 +6,20 @@
  * 
  */
 
+#include <mpi.h>
 #include "utils.h"
 
 //------------------- Timer Functions (Do not change) -------------------//
-void set_time(struct timespec &t, const int rank, MPI_Comm comm){
+void set_time(double &t, const int rank, MPI_Comm comm){
     if (rank>=0) // Do not call barrier if rank is negative
         MPI_Barrier(comm);
     if (rank <= 0){ //only 1 processor will set the time
-        clock_gettime(CLOCK_MONOTONIC,  &t);
+        t = MPI_Wtime();
     }
 }
 
-double get_duration(struct timespec &t_start, struct timespec &t_end){
-    return (t_end.tv_sec - t_start.tv_sec)
-         + (double) (t_end.tv_nsec - t_start.tv_nsec) * 1e-9;
+double get_duration(double &t_start, double &t_end){
+    return (t_end - t_start);
 }
 //---------------------------------------------------------------------//
 
