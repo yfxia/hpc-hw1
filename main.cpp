@@ -39,7 +39,7 @@ int main(int argc, char** argv) {
     int p, rank;
     const MPI_Comm comm = MPI_COMM_WORLD;
     
-    //get the rank and numnber of processors
+    //get the rank and number of processors
     MPI_Comm_size(comm, &p);
     MPI_Comm_rank(comm, &rank);
     
@@ -77,11 +77,9 @@ int main(int argc, char** argv) {
             print_output(v, result, broadcast_time, poly_evaltime, rank, p); //print result
         }
         free(local_values);
-        MPI_Finalize();
         //----------------------------------------------------------------//
     } else {
         //------------------- run the serial version ---------------------//
-        MPI_Finalize();
         for(int i=0; i<m; i++){
             set_time(t_start, -1, comm);
             double result = poly_evaluator(x[i], n, &global_constants[0]); //eval
@@ -92,6 +90,7 @@ int main(int argc, char** argv) {
         }
         //----------------------------------------------------------------//   
     }
+    MPI_Finalize();
     return (EXIT_SUCCESS);
 }
 
