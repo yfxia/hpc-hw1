@@ -53,6 +53,12 @@ In order to compile everything, simply run
 ```sh
 make all
 ```
-
-
-
+## Running
+### Serial execution example:
+```sh
+./poly-eval constants.txt values.txt
+```
+### Parallel execution example:
+```sh
+mpirun -np 3 ./poly-eval constants.txt values.txt
+```
