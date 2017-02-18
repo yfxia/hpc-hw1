@@ -1,5 +1,8 @@
-CX 4220 / CSE 6220 Spring 17 - Programming Assignment 1
-=======================================================
+CX 4220 / CSE 6220 Spring 17
+============================
+
+Programming Assignment 1
+------------------------
 
 ## Code hosting
 
