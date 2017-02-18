@@ -56,9 +56,9 @@ make all
 ## Running
 ### Serial execution example:
 ```sh
-./poly-eval constants.txt values.txt
+./poly-eval sample-constants.txt sample-values.txt
 ```
 ### Parallel execution example:
 ```sh
-mpirun -np 3 ./poly-eval constants.txt values.txt
+mpirun -np 3 ./poly-eval sample-constants.txt sample-values.txt
 ```
