@@ -17,6 +17,7 @@
 #define UTILS_H
 
 #include <mpi.h>
+#include <time.h>
 
 //------------------- Timer Functions (Do not change) -------------------//
 /**

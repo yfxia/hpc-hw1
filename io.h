@@ -26,6 +26,8 @@
 #include <stdexcept>
 #include <sstream>
 #include <vector>
+#include <list>
+#include <map>
 #include "const.h"
 
 
