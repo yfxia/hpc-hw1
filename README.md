@@ -38,15 +38,6 @@ Other files containing code that you should not change are:
 - `io.h`: implements IO functions and random input generation
 - `const.h`: contains constants used in the application
 
-Utility scripts (you may play around with these to generate your own custom
-input):
-
-- `generate_input.py`: Python script to generate inputs. You can modify this
-  code to generate different inputs.
-- `check_output.py`: Checks whether the output from `jacobi` is correct, by
-  comparing the output with pythons numpy implementation.
-
-
 ## Compiling
 
 In order to compile everything, simply run
