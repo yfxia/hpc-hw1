@@ -8,52 +8,41 @@
 
 #include "mpi_evaluator.h"
 #include "const.h"
-#include "<math.h>"
+#include <math.h>
 
 void scatter(const int n, double* scatter_values, int &n_local, double* &local_values, int source_rank, const MPI_Comm comm){
-    //Implementation
-    // double d = log2(p);
-    //Configure d using the right shift bitwise operator
-    int d = 0;
-    int value = source_rank;
-    while (value > 0) {
-	d++;
-	value = value >> 1;
-    }
-    for (j = 0; j < d; j = j + 1){
-	double mask = double pow(2, j);
-	if ((source_rank AND mask != 0 )){
-		//if it is the last processor, use floor, else ceiling
-		count = ceil(n/p); 
-		MPI_Send(scatter_values, count, MPI_INT,
-			0, 111, comm); 
-	} else {
-		MPI_Status stat;
-		MPI_Recv(scatter_values, count, MPI_INT, 
-			0, 111, comm, &stat);
+    //Get # processors and rank
+    int p, rank;
+    MPI_Comm_size(comm, &p);
+    MPI_Comm_rank(comm, &rank);
+    
+    
+    if (rank == source_rank){
+	for (int i = 0; i < p; i++){
+		if (i == p-1){
+			n_local = floor(n / p);
+		} else {
+			n_local = ceil(n / p);
+		}
+		local_values = new double[n_local];
+		if (i != source_rank) {
+			MPI_Send(&scatter_values, n_local, MPI_INT, i, 111, comm);
+		} else {
+			MPI_Status stat;
+			MPI_Recv(&scatter_values, n_local, MPI_INT, source_rank, 111, comm, &stat);
+		}
+		printf("After: Rank: %d\tscatter_V: %lld\n", rank, (long long int)scatter_values);
+    		printf("\nrank:%d\tvalue:%d\n", rank, (scatter_values+rank));
 	}
-	
+
     }
-    return MPI_Finalize();
+    return;
+
 }
 
-//Broadcast a real number among p processors
 double broadcast(double value, int source_rank, const MPI_Comm comm){
     //Implementation
-    int world_rank;
-    //MPI_Init(&argc, &argv);
-    MPI_Comm_rank(comm, &world_rank);
-    //If at processor 0, send data to everyone
-    if (world_rank == source_rank){
-	for (int i = 0; i < world_size; i++){
-		if (i != source_rank){
-			MPI_Send(value, 1, MPI_DOUBLE, i, 0, comm);
-		}
-	} 
-    } else {
-		MPI_Recv(value, 1, MPI_DOUBLE, source_rank, 0, comm, MPI_STATUS_IGNORE);
-	}
-    }
+
     return 0;
 }
 
